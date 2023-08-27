@@ -1,0 +1,16 @@
+.filter-values {
+    margin: auto;
+    width: 90%;
+}
+
+label {
+    width: 140px;
+}
+
+.filter-element {
+    margin-bottom: 14px;
+}
+
+.location.filter-element {
+    margin-bottom: 25px;
+}

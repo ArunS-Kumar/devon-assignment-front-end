@@ -1,0 +1,33 @@
+<div class="server-information">
+    <div class="filter">
+        <app-filters></app-filters>
+    </div>
+    
+    <div class="list">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">MODEL</th>
+                <th scope="col">RAM</th>
+                <th scope="col">HDD</th>
+                <th scope="col">LOCATION</th>
+                <th scope="col">PRICE</th>
+                <th scope="col">COMPARE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of serverInformation">
+                <td>{{ item.A }}</td>
+                <td>{{ item.B }}</td>
+                <td>{{ item.C }}</td>
+                <td>{{ item.D }}</td>
+                <td>{{ item.E }}</td>
+                <td>
+                  <input type="checkbox" id="vehicle1" name="vehicle" value="Bike">
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+    </div>
+</div>
