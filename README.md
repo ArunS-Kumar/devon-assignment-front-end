@@ -1,4 +1,4 @@
-# AngularAssignment2
+# Devon Assignment Front
 
 This project was generated with [Devon Assignment Front End](https://github.com/angular/angular-cli) version 16.2.0.
 
