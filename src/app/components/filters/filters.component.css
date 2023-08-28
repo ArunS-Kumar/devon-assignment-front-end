@@ -1,16 +1,29 @@
 .filter-values {
     margin: auto;
     width: 90%;
+    margin-top: 18px;
 }
 
 label {
     width: 140px;
 }
 
-.filter-element {
-    margin-bottom: 14px;
-}
-
 .location.filter-element {
     margin-bottom: 25px;
+}
+
+label.filter-title {
+    font-size: 18px;
+    font-weight: bold;
+    width: 100%;
+    margin: 18px 0 10px 0px;
+}
+
+select {
+    width: 80%;
+}
+
+.form-check.form-switch {
+    width: 50%;
+    float: left;
 }

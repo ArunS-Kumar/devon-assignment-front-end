@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {NgFor} from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {NgFor} from '@angular/common';
     BrowserAnimationsModule,
     FormsModule,
     MatInputModule,
-    NgFor
+    NgFor,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

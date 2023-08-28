@@ -7,37 +7,20 @@ import { ServerInformationService } from '../../services/server-information.serv
   styleUrls: ['./server-information.component.css']
 })
 export class ServerInformationComponent {
+  
+  serverInformation : string[] = [];
+  filterInformation: any;
+  storageFilter = '';
+  lastRow: number=0;
 
-  serverInformation = [
-    {
-      A: "HP DL120G7Intel Xeon E3-1240",
-      B: "16GBDDR3",
-      C: "4x1TBSATA2",
-      D: "Washington D.C.WDC-01",
-      E: "$105.99"
-    },
-    {
-      A: "Dell R210Intel Xeon X3430",
-      B: "8GBDDR3",
-      C: "2x500GBSATA2",
-      D: "Washington D.C.WDC-01",
-      E: "$55.99"
-    },
-    {
-      A: "HP DL380eG82x Intel Xeon E5-2420",
-      B: "32GBDDR3",
-      C: "2x1TBSATA2",
-      D: "Washington D.C.WDC-01",
-      E: "$199.99"
-    },
-    {
-      A: "IBM X3650M42x Intel Xeon E5-2620",
-      B: "32GBDDR3",
-      C: "2x1TBSATA2",
-      D: "Washington D.C.WDC-01",
-      E: "$220.99"
-    }
-  ];
+  filterData:any = {
+    "storage": '', 
+    "harddisk_type": '', 
+    "location": '',
+    "ram": '',
+    "limit": 10,
+    "start_row": 0 
+  };
 
   constructor(private readonly serverInformationService:ServerInformationService) { }
 
@@ -46,9 +29,32 @@ export class ServerInformationComponent {
   }
 
   getServerInformationList() {
-    let response = this.serverInformationService.getServerInformation();
-    // this.serverInformation = response;
-    console.log(this.serverInformation);
+    this.serverInformationService.getServerInformation(
+      this.filterData,
+      ).subscribe((apiResponse) => {
+      this.filterInformation = apiResponse['filterInformation'];
+      this.serverInformation = this.serverInformation.concat(apiResponse['serverInformation'].items);
+      this.lastRow = apiResponse['serverInformation'].lastRow;
+    });
+    window.scrollTo(0,document.body.scrollHeight);
   }
 
+  receiveStorageData(data: any) {
+    this.serverInformation  = [];
+
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        if (this.filterData.hasOwnProperty(key)) {
+          this.filterData[key] = data[key];
+        }
+      }
+    }
+
+    this.getServerInformationList();
+  }
+  
+  loadMoreClick(): void {
+    this.filterData['start_row'] = this.lastRow + 1;
+    this.getServerInformationList();
+  }
 }

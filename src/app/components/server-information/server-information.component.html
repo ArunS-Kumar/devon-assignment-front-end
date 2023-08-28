@@ -1,6 +1,10 @@
-<div class="server-information">
+<div class="server-information"t>
     <div class="filter">
-        <app-filters></app-filters>
+        <app-filters 
+        *ngIf="filterInformation.length > 0"
+        [filterInformation]="filterInformation"
+        (dataEvent)="receiveStorageData($event)"
+        ></app-filters>
     </div>
     
     <div class="list">
@@ -17,11 +21,11 @@
             </thead>
             <tbody>
               <tr *ngFor="let item of serverInformation">
-                <td>{{ item.A }}</td>
-                <td>{{ item.B }}</td>
-                <td>{{ item.C }}</td>
-                <td>{{ item.D }}</td>
-                <td>{{ item.E }}</td>
+                <td>{{ item[0] }}</td>
+                <td>{{ item[1] }}</td>
+                <td>{{ item[2] }}</td>
+                <td>{{ item[3] }}</td>
+                <td>{{ item[4] }}</td>
                 <td>
                   <input type="checkbox" id="vehicle1" name="vehicle" value="Bike">
                 </td>
@@ -29,5 +33,10 @@
               
             </tbody>
           </table>
+          <div class="pagination">
+              <label class="load">
+                <a href="#" class="pre" (click)="loadMoreClick()">Load More</a>
+              </label>
+          </div>
     </div>
 </div>

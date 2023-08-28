@@ -4,7 +4,6 @@
 
 .filter {
     width: 25%;
-    /* height: 200px; */
     float: left;
     border: solid 1px;
     margin: 0 4px 0 4px;
@@ -16,3 +15,15 @@
     border: solid 1px;
 }
 
+a {
+    text-decoration: none !important;
+    color: black;
+}
+
+.pagination {
+    margin: 0px 0 14px 46%;
+}
+
+a.pre {
+    padding-right: 20px;
+}
