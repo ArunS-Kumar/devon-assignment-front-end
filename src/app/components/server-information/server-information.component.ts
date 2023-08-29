@@ -42,6 +42,7 @@ export class ServerInformationComponent {
   receiveStorageData(data: any) {
     this.serverInformation  = [];
 
+    this.filterData['start_row'] = 0;
     for (const key in data) {
       if (data.hasOwnProperty(key)) {
         if (this.filterData.hasOwnProperty(key)) {

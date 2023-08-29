@@ -23,9 +23,7 @@
         name="ram_checkbox{{ value.key }}"
         (change)="onRamCheckboxChange($event, value.key)"
       />
-      <label class="form-check-label" for="flexSwitchCheckDefault">{{
-        value.value
-      }}</label>
+      <label class="form-check-label" for="flexSwitchCheckDefault">{{value.value}}</label>
     </div>
   </div>
 
@@ -34,7 +32,7 @@
 
     <select name="hard-disk-type" [(ngModel)]="hardDiskSelect" (change)="onHddSelected($event)">
       <option value="">Select an option</option>
-      <option *ngFor="let option of hardDiskOptions" value="{{ option }}">
+      <option *ngFor="let option of hardDiskOptions" value="{{option}}">
         {{ option }}
       </option>
     </select>
@@ -45,7 +43,7 @@
 
     <select name="location" [(ngModel)]="locationSelect" (change)="onLocationSelected($event)">
       <option value="">Select an option</option>
-      <option *ngFor="let option of locationOptions" value="{{ option }}">
+      <option *ngFor="let option of locationOptions" value="{{option}}">
         {{ option }}
       </option>
     </select>

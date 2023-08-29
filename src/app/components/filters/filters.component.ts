@@ -35,12 +35,7 @@ export class FiltersComponent implements OnInit {
 
   storageRngeChange(storageKey: number) {
     this.storageRngeDisplay = `${this.filterInformation[0].value[0]} - ${this.filterInformation[0].value[storageKey]}`;
-    let storageValue = [];
-    for (let index = 0; index <= storageKey; index++) {
-      storageValue.push(this.filterInformation[0].value[index]);
-    }
-
-    this.storageFilterData = storageValue.join(',');
+    this.storageFilterData = this.filterInformation[0].value[storageKey];
     this.sendFilterData();
   }
 
