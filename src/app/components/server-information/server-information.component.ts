@@ -12,6 +12,7 @@ export class ServerInformationComponent {
   filterInformation: any;
   storageFilter = '';
   lastRow: number=0;
+  displayLoadMore = true;
 
   filterData:any = {
     "storage": '', 
@@ -29,11 +30,17 @@ export class ServerInformationComponent {
   }
 
   getServerInformationList() {
+    this.displayLoadMore = true;
     this.serverInformationService.getServerInformation(
       this.filterData,
       ).subscribe((apiResponse) => {
       this.filterInformation = apiResponse['filterInformation'];
       this.serverInformation = this.serverInformation.concat(apiResponse['serverInformation'].items);
+      if(this.filterData.limit > apiResponse['serverInformation'].items.length || apiResponse['serverInformation'].items.length == 0) {
+        console.log(apiResponse['serverInformation'].items.length);
+        this.displayLoadMore = false;
+      }
+      console.log(apiResponse['serverInformation'].items.length);
       this.lastRow = apiResponse['serverInformation'].lastRow;
     });
     window.scrollTo(0,document.body.scrollHeight);
@@ -48,7 +55,7 @@ export class ServerInformationComponent {
         if (this.filterData.hasOwnProperty(key)) {
           this.filterData[key] = data[key];
         }
-      }
+      } 
     }
 
     this.getServerInformationList();

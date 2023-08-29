@@ -16,7 +16,7 @@
                 <th scope="col">HDD</th>
                 <th scope="col">LOCATION</th>
                 <th scope="col">PRICE</th>
-                <th scope="col">COMPARE</th>
+                <th scope="col" class="align-center">COMPARE</th>
               </tr>
             </thead>
             <tbody>
@@ -26,16 +26,16 @@
                 <td>{{ item[2] }}</td>
                 <td>{{ item[3] }}</td>
                 <td>{{ item[4] }}</td>
-                <td>
+                <td class="align-center">
                   <input type="checkbox" id="vehicle1" name="vehicle" value="Bike">
                 </td>
               </tr>
               
             </tbody>
           </table>
-          <div class="pagination">
+          <div class="pagination" *ngIf="displayLoadMore">
               <label class="load">
-                <a href="#" class="pre" (click)="loadMoreClick()">Load More</a>
+                <button type="button" class="btn btn-light pre" (click)="loadMoreClick()">Load More</button>
               </label>
           </div>
     </div>
