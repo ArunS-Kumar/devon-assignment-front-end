@@ -12,7 +12,7 @@ export class ComparisonComponent {
 
   compareData!: any[];
 
-  constructor(private store: Store<{ compare: CompareState }>) { }
+  constructor(public store: Store<{ compare: CompareState }>) { }
 
   ngOnInit() {
     this.store.select('compare').subscribe(data => {

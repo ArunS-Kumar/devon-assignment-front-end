@@ -12,7 +12,6 @@ describe('FiltersComponent', () => {
     });
     fixture = TestBed.createComponent(FiltersComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

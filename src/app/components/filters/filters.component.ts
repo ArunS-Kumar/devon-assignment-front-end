@@ -6,7 +6,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./filters.component.css'],
 })
 export class FiltersComponent implements OnInit {
-
   storageFilterMax!: number;
   storageRngeValue: number = 0;
   storageRngeDisplay = '0 - 0';
@@ -56,20 +55,17 @@ export class FiltersComponent implements OnInit {
     this.sendFilterData();
   }
 
-  onLocationSelected(event: any)
-  {
+  onLocationSelected(event: any) {
     this.locationFilterData = event.target.value;
     this.sendFilterData();
   }
 
-
-  sendFilterData()
-  {
+  sendFilterData() {
     let filterData = {
-      "storage": this.storageFilterData, 
-      "harddisk_type": this.hddFilterData, 
-      "location": this.locationFilterData,
-      "ram": this.ramFilterData
+      storage: this.storageFilterData,
+      harddisk_type: this.hddFilterData,
+      location: this.locationFilterData,
+      ram: this.ramFilterData,
     };
     this.dataEvent.emit(filterData);
   }

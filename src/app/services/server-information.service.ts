@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ApiUrl } from '../constant/server-information.constant';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServerInformationService {
   
-  private apiUrl = 'http://localhost:8000';
+  private apiUrl = ApiUrl;
 
   constructor(
     private readonly httpClient: HttpClient
