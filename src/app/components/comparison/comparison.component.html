@@ -8,11 +8,11 @@
         <div class="item-value remove-block"></div>
     </div>
     <div class="compare-block compare-1" *ngFor="let item of this.compareData">
-        <div class="item-value title">{{ item[1] }}</div>
-        <div class="item-value ram-block">{{ item[2] }}</div>
-        <div class="item-value hdd-block">{{ item[3] }}</div>
-        <div class="item-value location-block">{{ item[4] }}</div>
-        <div class="item-value price-block">{{ item[5] }}</div>
+        <div class="item-value title">{{ item[0] }}</div>
+        <div class="item-value ram-block">{{ item[1] }}</div>
+        <div class="item-value hdd-block">{{ item[2] }}</div>
+        <div class="item-value location-block">{{ item[3] }}</div>
+        <div class="item-value price-block">{{ item[4] }}</div>
         <div class="item-value remove-block">
             <button type="button" class="btn btn-danger" (click)="removeCompare(item)">Remove</button>
         </div>
