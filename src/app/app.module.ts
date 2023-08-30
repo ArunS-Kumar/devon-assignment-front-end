@@ -14,6 +14,9 @@ import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {NgFor} from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { CompareState } from './shared/store/compare.state';
+import { compareReducer } from './shared/store/compare.reducer';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     MatInputModule,
     NgFor,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot<{ compare: CompareState }>({ compare: compareReducer })
   ],
   providers: [],
   bootstrap: [AppComponent]

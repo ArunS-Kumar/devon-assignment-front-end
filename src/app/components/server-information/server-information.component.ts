@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { ServerInformationService } from '../../services/server-information.service';
+import { Store } from '@ngrx/store';
+import { addToCompare } from 'src/app/shared/store/compare.actions';
+import { CompareState } from 'src/app/shared/store/compare.state';
+import { ServerInformation } from 'src/app/server-information.model';
 
 @Component({
     selector: 'app-server-information',
@@ -13,6 +17,8 @@ export class ServerInformationComponent {
     storageFilter = '';
     lastRow: number = 0;
     displayLoadMore = true;
+    counterDisplay = 0;
+    compareDisplay!: any[];
 
     filterData: any = {
         "storage": '',
@@ -23,9 +29,13 @@ export class ServerInformationComponent {
         "start_row": 0
     };
 
-    constructor(private readonly serverInformationService: ServerInformationService) { }
+    constructor(private readonly serverInformationService: ServerInformationService, private store: Store<{ compare: CompareState }>) { }
 
     ngOnInit() {
+        this.store.select('compare').subscribe(data => {
+            console.log(data.compare);
+            this.compareDisplay = data.compare;
+        })
         this.getServerInformationList();
     }
 
@@ -35,12 +45,20 @@ export class ServerInformationComponent {
             this.filterData,
         ).subscribe((apiResponse) => {
             this.filterInformation = apiResponse['filterInformation'];
-            this.serverInformation = this.serverInformation.concat(apiResponse['serverInformation'].items);
+            let serverInformationRes = apiResponse['serverInformation'].items.map((data: any) => {
+                return [
+                    data.id,
+                    data.model,
+                    data.ram,
+                    data.hdd,
+                    data.location,
+                    data.price
+                ]
+            });
+            this.serverInformation = this.serverInformation.concat(serverInformationRes);
             if (this.filterData.limit > apiResponse['serverInformation'].items.length || apiResponse['serverInformation'].items.length == 0) {
-                console.log(apiResponse['serverInformation'].items.length);
                 this.displayLoadMore = false;
             }
-            console.log(apiResponse['serverInformation'].items.length);
             this.lastRow = apiResponse['serverInformation'].lastRow;
         });
         window.scrollTo(0, document.body.scrollHeight);
@@ -67,6 +85,6 @@ export class ServerInformationComponent {
     }
 
     compareClick(item: any): void {
-        console.log(item);
+        this.store.dispatch(addToCompare({ item }));
     }
 }

@@ -20,12 +20,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of serverInformation">
-          <td>{{ item[0] }}</td>
+                <tr *ngFor="let item of serverInformation">
           <td>{{ item[1] }}</td>
           <td>{{ item[2] }}</td>
           <td>{{ item[3] }}</td>
           <td>{{ item[4] }}</td>
+          <td>{{ item[5] }}</td>
           <td class="align-center">
             <input
               (click)="compareClick(item)"
