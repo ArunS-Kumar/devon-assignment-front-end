@@ -31,3 +31,8 @@ a.pre {
 .align-center {
     text-align: center;
 }
+
+.alert.alert-danger {
+    --bs-alert-padding-y: .4rem;
+    text-align: center;
+}

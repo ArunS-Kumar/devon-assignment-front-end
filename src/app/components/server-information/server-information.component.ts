@@ -3,7 +3,6 @@ import { ServerInformationService } from '../../services/server-information.serv
 import { Store } from '@ngrx/store';
 import { addToCompare } from 'src/app/shared/store/compare.actions';
 import { CompareState } from 'src/app/shared/store/compare.state';
-import { ServerInformation } from 'src/app/server-information.model';
 
 @Component({
     selector: 'app-server-information',
@@ -17,8 +16,8 @@ export class ServerInformationComponent {
     storageFilter = '';
     lastRow: number = 0;
     displayLoadMore = true;
-    counterDisplay = 0;
-    compareDisplay!: any[];
+    compareData!: any[];
+    alertMessage!: string;
 
     filterData: any = {
         "storage": '',
@@ -33,8 +32,7 @@ export class ServerInformationComponent {
 
     ngOnInit() {
         this.store.select('compare').subscribe(data => {
-            console.log(data.compare);
-            this.compareDisplay = data.compare;
+            this.compareData = data.compare;
         })
         this.getServerInformationList();
     }
@@ -45,23 +43,12 @@ export class ServerInformationComponent {
             this.filterData,
         ).subscribe((apiResponse) => {
             this.filterInformation = apiResponse['filterInformation'];
-            let serverInformationRes = apiResponse['serverInformation'].items.map((data: any) => {
-                return [
-                    data.id,
-                    data.model,
-                    data.ram,
-                    data.hdd,
-                    data.location,
-                    data.price
-                ]
-            });
-            this.serverInformation = this.serverInformation.concat(serverInformationRes);
+            this.serverInformation = this.serverInformation.concat(apiResponse['serverInformation'].items);
             if (this.filterData.limit > apiResponse['serverInformation'].items.length || apiResponse['serverInformation'].items.length == 0) {
                 this.displayLoadMore = false;
             }
             this.lastRow = apiResponse['serverInformation'].lastRow;
         });
-        window.scrollTo(0, document.body.scrollHeight);
     }
 
     receiveStorageData(data: any) {
@@ -84,7 +71,15 @@ export class ServerInformationComponent {
         this.getServerInformationList();
     }
 
-    compareClick(item: any): void {
-        this.store.dispatch(addToCompare({ item }));
+    compareClick(item: any, checkbox: any): void {
+        if(this.compareData.length < 5) {
+            this.store.dispatch(addToCompare({ item }));
+        } else {
+            checkbox.target.checked = false;
+            this.alertMessage = 'Only five items are allow to compare at a time!'
+            setTimeout(() => {
+                this.alertMessage = '';
+              }, 4000); 
+        }
     }
 }

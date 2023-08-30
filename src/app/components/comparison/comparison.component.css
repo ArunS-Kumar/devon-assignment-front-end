@@ -34,3 +34,8 @@
 .remove-block {
     height: 50px !important;
 }
+
+p.empty-compare {
+    margin: 12% 0px 0px 39%;
+    font-size: 24px;
+}

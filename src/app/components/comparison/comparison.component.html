@@ -1,4 +1,4 @@
-<div class="comparison">
+<div class="comparison" *ngIf="this.compareData.length > 0; else elseBlock">
     <div class="compare-block heading-block">
         <div class="item-value title">MODEL</div>
         <div class="item-value ram-block">RAM</div>
@@ -18,3 +18,7 @@
         </div>
     </div>
 </div>
+
+<ng-template #elseBlock>
+    <p class="empty-compare">Nothing to display in compare section!</p>
+  </ng-template>
